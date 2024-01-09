@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('https://i.pinimg.com/originals/cb/6d/2c/cb6d2c974f71580b964c1f931e8b2aa3.jpg');">
+
+    <div class="container">
+        <header class="text-center">
+            <h3 class="mb-4 mt-4 pb-2 fw-normal font-monospace" style="color: #546E7A;">Check The Weather Forecast</h3>
+            <div class="input-group rounded mb-3 mt-3 d-flex justify-content-center">
+                <input type="search" class="form-control-sm rounded-pill text-center custom-input" id="cityInput" placeholder="Search City" aria-label="Search"
+                  aria-describedby="searchButton"/>
+                <a type="button">
+                  <span class="input-group-text border-0 fw-bold rounded-pill" id="searchButton"  style="background-color: #546E7A; color: #ECEFF1;">
+                    Check!
+                  </span>
+                </a>
+            </div>
+        </header>
+
+        <main class="weather-cards">
+            <div id="citiesList" class="row row-cols-1 row-cols-md-3 mt-3 g-4">
+            </div>
+            <script id="city-template" type="text/x-handlebars-template">
+                {{#each cities}}
+                    <div class="col">
+                        <div class="card h-100 bg-light opacity-75">
+                            <div class="card-body  d-flex flex-column justify-content-center">
+                                <h6 class="card-title">{{name}}</h6>
+                                <p class="card-text temperature" style="font-size: 36px;">{{temperature}}°</p>
+                                <div class="d-flex flex-row align-items-center mb-2">
+                                    <p class="card-text">{{condition}}</p>
+                                    <img src="{{conditionPic}}" class="weather-icon" alt="Weather Icon">
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    {{#if isSaved}}
+                                        <button type="button" class="btn btn-outline-dark btn-rounded removeButton" data-mdb-ripple-init  data-mdb-ripple-color="dark">Remove</button>
+                                    {{else}}
+                                        <button type="button" class="btn btn-outline-light btn-rounded saveButton" data-mdb-ripple-init data-mdb-ripple-color="dark">Save</button>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </script>
+        </main>
+    </div>
+
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/@fortawesome/fontawesome-free/js/all.js"></script>    
+    <script src="js/models/WeatherModel.js"></script>
+    <script src="js/controllers/WeatherController.js"></script>
+    <script src="js/views/Renderer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+
+
